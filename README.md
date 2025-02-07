@@ -77,7 +77,7 @@ Choose the method that best suits your workflow.
 
 ### Step 2: Create `.env`
 
-Create a .env file in the root directory of the repository and replace the placeholders with your actual Magento endpoint, base URL, and logo URL. 🌐
+Create a .env file in the root directory of the repository and replace the placeholders with your actual Magento endpoint, base URL, and logo URL.🌐
 
 ```typescript
 # This variable will be used in the Next.js config file.
