@@ -1,0 +1,36 @@
+.ribbinContainer {
+    width: 100%;
+    min-height: 40px;
+    background: #f3f4f6;
+    display: flex;
+    position: relative;
+
+    @media screen and (max-width:1000px) {
+        min-height: 30px;
+    }
+}
+
+.header_ribbon {
+    width: 1440px;
+    display: flex;
+    margin: auto;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 0 20px;
+
+    @media screen and (max-width:1000px) {
+        justify-content: center;
+        gap: 5px;
+        padding: 0 2px;
+    }
+
+}
+
+.header_ribbon p {
+    font-size: 16px;
+    color: #111827;
+
+    @media screen and (max-width:1000px) {
+        font-size: 14px;
+    }
+}

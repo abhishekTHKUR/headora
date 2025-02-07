@@ -1,0 +1,184 @@
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 49; /* Just below the navbar */
+  }
+  
+  .overlayActive {
+    display: block;
+  }
+  
+  /* Update your existing nav styles to have a higher z-index */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background: white;
+    margin: 0;
+    transition: left 0.3s ease;
+    z-index: 50;
+  }
+  
+  /* Ensure the navbar is above the overlay */
+  .navbar {
+    z-index: 50;
+  }
+.navbar {
+    width: 100%;
+    border-bottom: 1px solid rgb(209 213 219);
+    background-color: white;
+    position: fixed;
+    z-index: 50;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    height: 56px;
+    max-width: 1440px;
+    margin: auto;
+  }
+  
+  .mobileMenuIcon {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .nav {
+    flex: 1;
+    margin-left: 20px;
+  }
+  
+  .navItems {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .actionItem {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .mobileMenuHeader {
+    display: none;
+  }
+  
+  .mobileArrow {
+    display: none;
+  }
+  .signContainer{
+    min-height: 62px;
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .signContainer p{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+  }
+  .signContainer a{
+    font-size: 16px;
+    text-decoration: underline;
+    color: #2954ff;
+  }
+  @media (max-width: 1000px) {
+    .mobileMenuIcon {
+      display: block;
+    }
+  
+    .nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      max-width: 360px;
+      height: 100vh;
+      background: white;
+      margin: 0;
+      transition: left 0.3s ease;
+      z-index: 100;
+      display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+  
+    .mobileNavActive {
+      left: 0;
+    }
+  
+    .mobileMenuHeader {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      background-color: #f3f4f6;
+    }
+.mobileMenuHeader span{
+    color: #111827;
+    font-size: 16px;
+}
+  
+    .closeIcon {
+      font-size: 30px;
+      cursor: pointer;
+      height: 56px;
+        width: 56px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+  
+    .navItems {
+      flex-direction: column;
+      gap: 0;
+     
+    }
+  
+    .navItem {
+      padding: 15px 20px;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+    }
+  
+    .mobileArrow {
+      display: block;
+      font-size: 20px;
+    }
+  
+    .dropdown {
+      display: none;
+    }
+  }
