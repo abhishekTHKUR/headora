@@ -6,7 +6,7 @@ Welcome to the **Headora Theme**! 🚀 This is a [Next.js](https://nextjs.org) b
 
 ### 💥 Headora Theme Overview
 
-The <a href="https://wiki.ocodecommerce.com/en/Theme/overview" target="_blank" rel="noopener noreferrer"><strong>Headora Theme</strong></a> is a headless eCommerce solution that brings the power of Magento’s GraphQL API together with a blazing-fast Next.js frontend. 🚀 This setup creates **fast**, **scalable**, and **SEO-friendly** eCommerce stores, while giving you the flexibility to customize the UI/UX to your heart's content. 🎨
+The **[Headora Theme](https://wiki.ocodecommerce.com/en/Theme/overview)** is a headless eCommerce solution that brings the power of Magento’s GraphQL API together with a blazing-fast Next.js frontend. 🚀 This setup creates **fast**, **scalable**, and **SEO-friendly** eCommerce stores, while giving you the flexibility to customize the UI/UX to your heart's content. 🎨
 
 ![Logo](https://dev2.diamondtrov.com/media/home.png)
 
