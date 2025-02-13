@@ -1,16 +1,16 @@
-# 🌟 Next.js Venia 
+# 🌟 Headora Theme
 
-Welcome to the **Next.js Venia**! 🚀 This is a [Next.js](https://nextjs.org) theme with Magento 2. It’s a modern, **Progressive Web Application (PWA)** storefront built on top of **Magento 2**, utilizing Next.js and PWA Studio tools. 💡
+Welcome to the **Headora Theme**! 🚀 This is a [Next.js](https://nextjs.org) based theme with Magento 2. It’s a modern, **Progressive Web Application (PWA)** storefront built on top of **Magento 2**, utilizing Next.js and PWA Studio tools. 💡
 
 ## 📝 About the Theme
 
-### 💥 Next.js Magento Venia Theme Overview
+### 💥 Headora Theme Overview
 
-The **[Next.js Magento Venia Theme](https://wiki.ocodecommerce.com/en/Theme/overview)** is a headless eCommerce solution that brings the power of Magento’s GraphQL API together with a blazing-fast Next.js frontend. 🚀 This setup creates **fast**, **scalable**, and **SEO-friendly** eCommerce stores, while giving you the flexibility to customize the UI/UX to your heart's content. 🎨
+The <a href="https://wiki.ocodecommerce.com/en/Theme/overview" target="_blank" rel="noopener noreferrer"><strong>Headora Theme</strong></a> is a headless eCommerce solution that brings the power of Magento’s GraphQL API together with a blazing-fast Next.js frontend. 🚀 This setup creates **fast**, **scalable**, and **SEO-friendly** eCommerce stores, while giving you the flexibility to customize the UI/UX to your heart's content. 🎨
 
 ![Logo](https://dev2.diamondtrov.com/media/home.png)
 
-### 📄 **Next.js Magento Venia Theme Pages**
+### 📄 **Headora Theme Pages**
 
 - **🏠 [Home Page](https://wiki.ocodecommerce.com/en/Theme/home-page)**  
   - Features **highlighted products**, **categories**, and **promotional banners** for a captivating shopping experience.  
@@ -54,7 +54,7 @@ Before you begin, make sure you have the following installed:
 
 ### Step 1: Clone the Repository
 
-To get started, clone the Next.js GitHub repository using one of the following methods:
+To get started, clone the Headora Theme GitHub repository using one of the following methods:
 
 #### 🔒 HTTPS
 ```bash
@@ -124,7 +124,7 @@ sudo chmod 755 -R var pub generated
 
 This will install all dependencies and start the theme on your local development server.
 
-## 🗂️ theme Structure
+## 🗂️ Theme Directory Structure
 
 ```
 next-venia/
