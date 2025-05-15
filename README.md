@@ -1,12 +1,16 @@
 # 🌟 Headora Theme
 
-Welcome to the **Headora Theme**! 🚀 This is a [Next.js](https://nextjs.org) based theme with Magento 2. It’s a modern, **Progressive Web Application (PWA)** storefront built on top of **Magento 2**, utilizing Next.js and PWA Studio tools. 💡
+Welcome Headora is a high-performance, modern eCommerce storefront built with Next.js on the frontend, connected via GraphQL API to a Magento backend. Inspired by the TrueFacet theme, Headora offers a sleek and luxurious shopping experience tailored for beauty products, clothing, and lifestyle accessories.
+💡
 
 ## 📝 About the Theme
 
 ### 💥 Headora Theme Overview
 
-The **[Headora Theme](https://wiki.ocodecommerce.com/en/Theme/overview)** is a headless eCommerce solution that brings the power of Magento’s GraphQL API together with a blazing-fast Next.js frontend. 🚀 This setup creates **fast**, **scalable**, and **SEO-friendly** eCommerce stores, while giving you the flexibility to customize the UI/UX to your heart's content. 🎨
+The **[Headora Theme](https://wiki.ocodecommerce.com/en/Theme/overview)** is a headless eCommerce solution that brings the power of Magento’s GraphQL API together with a blazing-fast Next.js frontend. 🚀 This setup creates **fast**, **scalable**, and **SEO-friendly** eCommerce stores, while giving you the flexibility to customize the UI/UX to your heart's content. 
+
+
+
 
 ![Logo](https://dev2.diamondtrov.com/media/home.png)
 
@@ -31,12 +35,69 @@ Would you like me to refine or expand on any section? 🚀
 
 ## 🚀 Key Features
 
-* **📱 Progressive Web App (PWA):** Offline support, fast loading, and app-like experience
-* **🔀 Dynamic Routing:** Supports multi-level categories and product pages
-* **🔍 SEO Optimization:** Built-in support for meta tags, OpenGraph, and structured data (JSON-LD)
-* **🔧 Filtering and Sorting:** Advanced product filtering and sorting capabilities
-* **💻 Responsive Design:** Optimized for mobile, tablet, and desktop devices
-* **🔗 Magento Integration:** Seamlessly integrates with Magento 2 via GraphQL API
+ **Frontend**: Next.js (React-based), with server-side rendering and static generation for optimal SEO and speed.
+
+
+**API Layer**: Magento  GraphQL for seamless communication between frontend and backend.
+
+
+**Backend**: Magento CMS, providing robust product management, order processing, and customer features.
+
+
+**Theme**: Customized UI/UX based on the TrueFacet theme for a premium shopping feel.
+
+
+**Styling**:  CSS + custom components to reflect the brand's identity.
+
+The frontend pages use getStaticProps or getStaticPaths to fetch data at build time.
+
+
+GraphQL queries are modularized under /graphql/queries.
+
+
+API calls are centralized through a single GraphQL Client for easy maintenance.
+
+
+CMS Pages and Blocks are rendered dynamically based on backend changes using ISR (Incremental Static Regeneration).
+
+
+Product and Category Data is fetched dynamically via URL keys ([slug] pattern).
+
+
+Data is mapped into reusable UI Components for flexibility and easier redesigns.
+
+
+
+## 🛠️ Pre-Existing Issues & Resolutions
+**Simple Product Pages Not Loading** – Fixed undefined values on PDPs by properly handling simple vs configurable product types.
+
+**Category Products Missing Until Rebuild** – Implemented dynamic cache to show updated category products without rebuilds.
+
+**Category Page Showing All Products** – Revised logic to display only relevant category products with pagination support.
+
+**Filters Not Working** – Refactored filter logic to apply user-selected filters correctly in real time.
+
+**Search Bar Not Functional** – Fixed search binding and query to dynamically fetch and display results.
+
+**Missing Product Count Display** – Added dynamic product count for category and search results to improve user clarity.
+
+**Product URL Slug Repeated**– Corrected routing to avoid duplicate slugs in URLs and improve SEO.
+
+## 🚀 Upgrades & Integration
+📦 Headora Theme - Latest Version
+This release includes feature improvements and structural enhancements to support better performance, SEO, and maintainability:
+
+✅ Added support for review section on product detail pages
+
+✅ Meta tag updates across all main pages
+
+✅ Fixed URL routing issues with slugs
+
+✅ Optimized CMS block rendering logic
+
+✅ Improved styling consistency across mobile and desktop views
+
+✅ Modularized GraphQL queries and client setup for easier maintenance
 
 ## 🚀 Getting Started
 
