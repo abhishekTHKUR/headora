@@ -2,14 +2,19 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import Layout from "@/components/Layout/layout";
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
 import { NextPageContext } from "next";
 import { Client } from "@/graphql/client";
 import Ribbon from "@/components/Ribbon/Ribbon";
 import { useEffect, useState } from "react";
 import MobileHeader from "@/components/Header/MobileHeader";
+import TopRibbon from "@/components/TopRibbon/TopRibbon";
 
-function App({ categoriesList, Component, pageProps }: any) {
+
+let cachedData: any = null; 
+function App({ categoriesList, Component, pageProps, ribbonResponce,
+    BoutiqueCategoriesList
+  }: any) {
+   
   const [showRibbon, setShowRibbon] = useState<any>(false);
   const [isMobile, setIsMobile] = useState<any>(false);
 
@@ -47,24 +52,41 @@ function App({ categoriesList, Component, pageProps }: any) {
 
   return (
     <>
+
       <Layout>
-      {!isMobile && showRibbon && <Ribbon />}
+      {showRibbon && <TopRibbon ribbonResponce={ribbonResponce}/>}
+        
+      {showRibbon && <Ribbon />}
         {isMobile ? (
-          <MobileHeader categoriesList={categoriesList} />
+              <MobileHeader
+              categoriesList={categoriesList}
+              BoutiqueCategoriesList={BoutiqueCategoriesList}
+            />
         ) : (
-          <Header categoriesList={categoriesList} />
+          <Header categoriesList={ categoriesList} 
+           BoutiqueCategoriesList={ BoutiqueCategoriesList} 
+           />
         )}
-        <Component {...pageProps} />
-        <Footer />
+        <Component showRibbon={showRibbon} {...pageProps} />
+        <Footer/>
       </Layout>
+    
     </>
   )
 }
 App.getInitialProps = async (ctx: NextPageContext) => {
-  const client = new Client
-  const response = await client.fetchCategories();
-
-  return { categoriesList: response }
+ 
+  if (!cachedData) {
+    const client = new Client();
+    const response = await client.fetchCategories();
+    const ribbonResponce = await client.fetchTopRibbion();
+     const Boutiqueresponse = await client.fetchBoutiqueCategories();
+    // //console.log(Boutiqueresponse,"checkkkkkkkkkkkkkk")
+    cachedData = { categoriesList: response, 
+         BoutiqueCategoriesList: Boutiqueresponse,
+       ribbonResponce };
+  } 
+  return cachedData;
 
 }
 export default App

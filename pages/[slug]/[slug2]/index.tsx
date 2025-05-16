@@ -3,8 +3,9 @@ import Filter from '@/components/Filters/Filter'
 import CategoryHeader from '@/components/Category/CategoryHeader'
 import { Client } from '@/graphql/client';
 import CategoriesProducts from '@/components/Category/CategoriesProducts';
-import { GetStaticPaths } from 'next';
-import { GetStaticProps } from 'next';
+
+import { GetStaticPaths, GetStaticProps } from 'next';
+
 import Head from 'next/head'
 import Content from '@/components/Category/Content';
 import CollectionHeader from '@/components/Collection/CollectionHeader';
@@ -16,6 +17,9 @@ import CollectionReletatedProducts from '@/components/Collection/CollectionRelet
 import SubCollectionListing from '@/components/Collection/SubCollectionListing';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import fs from 'fs/promises';
+  import path from 'path';
+  import { createHash } from 'crypto';
 
 const CategorySchema = ({ category, url }: any) => {
 
@@ -51,7 +55,7 @@ const BreadcrumbSchema = ({ breadcrumbs }: any) => {
       "name": breadcrumb?.name,
       "item": index === 0
       ? `${process.env.baseURLWithoutTrailingSlash}${breadcrumb?.path}` 
-      : `${process.env.baseURLWithoutTrailingSlash}${breadcrumb?.path}/`, 
+      : `${process.env.baseURLWithoutTrailingSlash}${breadcrumb?.path}`, 
     })),
   };
 
@@ -66,46 +70,79 @@ const BreadcrumbSchema = ({ breadcrumbs }: any) => {
 };
 export const getStaticPaths: GetStaticPaths = async () => {
 
+  const allCategoriesPathFile = path.resolve(`./cacheM/secondLevelCategoriesPath.json`);
+    try {
+      let allCategories= JSON.parse(await fs.readFile(allCategoriesPathFile, 'utf-8'));
+      const paths = allCategories.map((url: any) => {
+        let urlPath = url.split('/');
+        return { params: { 
+              slug: urlPath[0] || '',
+              slug2: urlPath[1] || ''
+            } 
+          }  // Single segment case
+           
+
+        
+       
+    });
+     let responseData = {
+      paths,
+      fallback: false,
+    }
+  
+    return responseData;
+  
+    } catch (error) {
+      
+    }
   const client = new Client();
 
   const fetchAllCategories = async () => {
     const response = await client.fetchSSGSubCategoryData();
-
     return response?.categories?.items[0];
   };
 
   const categories = await fetchAllCategories();
+  const paths = categories.children.flatMap((category: { url_path: string; children: any[] }) => {
+    return category.children?.map((subCategory: { url_path: string }) => {
+      let urlPath =subCategory.url_path.split('/')
+      return {
+        params: { slug: urlPath[0],  slug2: urlPath[1] },
+      };
+    }) || [];
+  });
 
-
-  let paths: { params: { slug: string; slug2: string } }[] = [];
-
-  if (categories?.children) {
-    categories.children.forEach((category: any) => {
-      if (category.children) {
-        category.children.forEach((subCategory: any) => {
-          if (category.url_key && subCategory.url_key) {
-            paths.push({
-              params: { slug: category.url_key, slug2: subCategory.url_key }
-            });
-          }
-        });
-      }
-    });
-  }
-
-
-  return {
-    paths,
-    fallback: false,
-  };
+    let responseData = {
+      paths,
+      fallback: false,
+    }
+    return responseData;
+  
 }
 
 
 export const getStaticProps: GetStaticProps = async ({ params, query }: any) => {
+  const { slug,slug2 } = params as { slug: string ,slug2: string;};
+  const urlPath=slug+'/'+slug2
+  
+  //console.log('/////////////////////getStaticProps////////////slug2:-',urlPath)
+  const cacheStaticProps= createHash('sha1')
+    .update(urlPath)
+    .digest('hex')
+    .slice(0, 12); 
+    const cacheStaticPropsPath= path.resolve(`./cacheM/category/${cacheStaticProps}.json`)
+    
+    try {
+      let responseData= JSON.parse(await fs.readFile(cacheStaticPropsPath, 'utf-8'));
+      return responseData;
+    } catch (error) {
+      
+    }
+
   const client = new Client();
 
   // Handle slug and page from params and query
-  const slug = params?.slug2 || params?.slug; // Use slug2 if available, fallback to slug
+  //const slug = params?.slug2 || params?.slug; // Use slug2 if available, fallback to slug
   const page = query?.page ? parseInt(query.page as string, 10) : 1; // Get page from query or default to 1
 
 
@@ -121,10 +158,10 @@ export const getStaticProps: GetStaticProps = async ({ params, query }: any) => 
 };
 
 try {
-  const collectionData = await client.fetchCollectionPage(slug as string);
+  const collectionData = await client.fetchCollectionPage(urlPath as string);
   const collection = collectionData?.data?.categoryList?.[0] || null;
 
-  const category = await fetchCategoryByURLKey(slug as string, page) || null;
+  const category = await fetchCategoryByURLKey(urlPath as string, page) || null;
   const uid = category?.uid || null;
 
   // Fetch products for the category by UID and page
@@ -147,29 +184,21 @@ let productsRes = uid ? await fetchProductsByUID(uid, page) : null;
     })
 
 
-    if (productsRes.products.page_info.total_pages > 1) {
-      for (var i = 2; i <= productsRes?.products?.page_info?.total_pages; i++) {
-
-        const additionalProducts = await fetchProductsByUID(uid, i);
-        if (additionalProducts.products) {
-
-          additionalProducts.products.items.forEach((item: any) => {
-            allProduTList.push(item)
-          })
-        }
-      }
-    }
   }
 
-  return {
+  let responseData={
     props: {
       allProduTList,      
       category,           
       currentPage: page,  
       productsRes,        
       collection,         
-    },
-  };
+    }
+    }
+    await fs.writeFile(cacheStaticPropsPath, JSON.stringify(responseData));
+    return responseData;
+
+  
 } catch (error) {
   return {
     props: {
@@ -192,10 +221,10 @@ const Categories = ({ allProduTList, category, productsRes, collection,categorie
   const url = router.asPath
   const CategoryImage = category?.image || '/default-image.jpg'
   const fileExtension = CategoryImage.split('.').pop()?.toLowerCase() || "jpg";
-  const { slug, slug2, slug3, ...rest } = router.query;
+  //const { slug, slug2, slug3, ...rest } = router.query;
 
   // Get all slugs from query
-  const slugs = [slug, slug2, slug3, ...Object.values(rest)].filter(Boolean);
+  //const slugs = [slug, slug2, slug3, ...Object.values(rest)].filter(Boolean);
 
   const findCategoryName = (key: string, items?: any): string | null => {
     if (!Array.isArray(items)) return null; // Ensure items is an array
@@ -213,19 +242,19 @@ const Categories = ({ allProduTList, category, productsRes, collection,categorie
   };
   
  // Create breadcrumb array dynamically by matching slugs to category names
- const breadcrumbs = [
-  { name: 'Home', path: '' },
-  ...slugs.map((slugPart: any, index) => ({
-    name: findCategoryName(slugPart, categories?.data?.categories?.items) || slugPart.replace(/-/g, ' '),
-    path: `/${slugs.slice(0, index + 1).join('/')}`,
-  })),
-];
+//  const breadcrumbs = [
+//   { name: 'Home', path: '' },
+//   ...slugs.map((slugPart: any, index) => ({
+//     name: findCategoryName(slugPart, categories?.data?.categories?.items) || slugPart.replace(/-/g, ' '),
+//     path: `/${slugs.slice(0, index + 1).join('/')}`,
+//   })),
+// ];
 const CollectionDescription = collection?.description || null
 
   return (
     <>
 
-      {/* <Head>
+      <Head>
         <meta charSet="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
    
@@ -261,8 +290,8 @@ const CollectionDescription = collection?.description || null
         )}
         <meta name="twitter:image" content={CategoryImage}/>
       </Head>
-      <BreadcrumbSchema breadcrumbs={breadcrumbs}/>
-      <CategorySchema category={category} url={url}/> */}
+      {/* <BreadcrumbSchema breadcrumbs={breadcrumbs}/> */}
+      <CategorySchema category={category} url={url}/>
 
       {category?.display_mode === "PAGE" ? (
         <>

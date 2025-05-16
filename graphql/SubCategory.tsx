@@ -4,7 +4,7 @@ query {
     filter: {
       category_uid: { eq: "${uid}" }
     },
-    pageSize: 300,
+    pageSize: 21,
     currentPage: ${currentPage}
   ) {
     total_count
@@ -78,8 +78,12 @@ query {
 }
       ... on SimpleProduct {
         # Example of custom attributes
-        
-        price {
+         ring_size
+         gender
+         condition
+         movement
+         bracelet_size
+         price {
           regularPrice {
             amount {
               value
@@ -103,7 +107,11 @@ query {
           }
             
         }
-    
+     ring_size
+       gender
+       condition
+       movement
+       bracelet_size
         variants {
           attributes {
             code

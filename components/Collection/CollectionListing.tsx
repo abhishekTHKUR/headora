@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 
 
+
 function CollectionListing({ Collection }: any) {
     const router = useRouter()
 
@@ -40,6 +41,7 @@ function CollectionListing({ Collection }: any) {
 
     const listClassName = Collection?.children?.length > 15 ? styles.extentedlistingWrapper : styles.listingWrapper;
     const itemClassName = Collection?.children?.length > 15 ? styles.extentedwrapperPushItem : styles.wrapperPushItem;
+    console.log("Collection", Collection)
     return (
 
         <>
@@ -73,7 +75,7 @@ function CollectionListing({ Collection }: any) {
                                                 {renderDescription(item?.short_description)}
                                                 {/* <div className={styles.priceInfo}>
                                                 <p>RETAIL PRICE: <span>$5000</span></p>
-                                                <p>ON TRUEFACET: <span>STARTS AT $4500</span></p>
+                                                <p>ON {`${process.env.siteName}`}: <span>STARTS AT $4500</span></p>
                                             </div> */}
 
                                             </figcaption>

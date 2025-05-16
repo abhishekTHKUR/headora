@@ -91,7 +91,11 @@ aggregations {
           
         }
       }
+        ... on SimpleProduct{
+          return_policy
+       }
       ... on ConfigurableProduct {
+        return_policy
         configurable_options {
           id
           attribute_id_v2

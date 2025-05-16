@@ -1,21 +1,33 @@
 import type { NextConfig } from "next";
-import dotenv from "dotenv";
-
-// Load environment variables
-dotenv.config();
 
 const nextConfig: NextConfig = {
+  
   reactStrictMode: true,
+  
+
   env: {
-    magentoEndpoint: process.env.NEXT_PUBLIC_MAGENTO_ENDPOINT || '',
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL || '',
-    baseURLWithoutTrailingSlash: process.env.NEXT_PUBLIC_BASE_URL_WITHOUT_TRAILING_SLASH || '',
+    magentoEndpoint: '', // magento endpoint
+    baseURL:'', // baseURL of your site with  trailing slash 
+    baseURLWithoutTrailingSlash:'', // baseURL of your site without trailing slash 
+    SecondStoreURL: '',
+    logoURL: '', // if you don't have Logo then leave it blank. 
+    logoText: '', // if you don't have Logo then you can simply site name 
+    siteName: '' // your site name
+  },  
+
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb', // Increase request payload limit
+    },
   },
   staticPageGenerationTimeout: 300000,
-  trailingSlash: true,
+  output: 'export',
+  trailingSlash: true, // Ensures static files have .html
+
   images: {
-    domains: [new URL(process.env.NEXT_PUBLIC_MAGENTO_ENDPOINT || '').hostname], // Dynamically extract domain
-  },
+    unoptimized: true,
+  }
+
 };
 
 export default nextConfig;

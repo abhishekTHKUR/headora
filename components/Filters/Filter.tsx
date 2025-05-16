@@ -4,15 +4,12 @@ import Image from 'next/image';
 
 const Filter: any = ({
   isSortListHovered,
-  activeSortField,
-  toggleDropdown,
   handleCheckboxChange,
   handleFilterClick,
   handleSortOptionClick,
   handleSortListHover,
+  
   categoriesData,
-  openDropdown,
-  selectedOptions,
   productCount,
   isFilterOpen,
   filters,
@@ -22,9 +19,7 @@ const Filter: any = ({
   setIsFilterOpen,
   activeFilters,
   handleRemoveFilter,
-  priceRange,
   setPriceRange,
-  handlePriceChange,
   highestPrice,
   lowestPrice
 
@@ -32,7 +27,7 @@ const Filter: any = ({
   const [showMoreFilters, setShowMoreFilters] = useState(false);
   const [isMobileSortOpen, setIsMobileSortOpen] = useState(false);
   const [openGroups, setOpenGroups] = useState<{ [key: string]: boolean }>({});
-  const [steps, setSteps] = useState<number[]>([]);
+
   useEffect(() => {
     setPriceRange([lowestPrice, highestPrice]);
 
@@ -42,12 +37,10 @@ const Filter: any = ({
     for (let i = Math.floor(lowestPrice / stepSize) * stepSize; i <= highestPrice; i += stepSize) {
       stepsArray.push(i);
     }
-    setSteps(stepsArray);
+
   }, [highestPrice, lowestPrice]);
 
-  const toggleShowMoreFilters = () => {
-    setShowMoreFilters(!showMoreFilters);
-  };
+
   const toggleMobileSort = () => {
     setIsMobileSortOpen(!isMobileSortOpen);
   };

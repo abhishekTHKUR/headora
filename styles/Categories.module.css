@@ -62,19 +62,21 @@
 .cartegoryHeadeBreadcrumbs span {
   text-decoration: none;
   text-transform: capitalize;
+  color: #a29253;
+  font-size: 10px;
 }
 
 .cartegoryHeadeBreadcrumbs a {
-  color: #000000;
+  color: #a29253;
   text-decoration: none;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 10px;
 
   cursor: pointer;
   text-transform: capitalize;
 
   @media screen and (max-width: 650px) {
-    font-size: 14px;
+    font-size: 10px;
 
   }
 }
@@ -96,6 +98,7 @@
   font-weight: 400;
   margin-bottom: 15px;
   font-family: var(--SourceSerifPro);
+
 }
 
 .contentContainer p {
@@ -166,8 +169,8 @@
   display: flex;
   gap: 20px;
   padding: 0px 15px;
-  border: #000 solid 1px;
-  border-radius: 5px;
+  border: 1px solid #a29253;
+  border-radius: 0px;
 }
 
 .sortList span {
@@ -415,11 +418,11 @@
   display: flex;
   justify-content: center;
   border: 1px solid #1f1f1f;
-  border-radius: 20px;
+  border-radius: 0px;
 }
 
 .MobileFilterNavbarItem button {
-  padding: 10px 10px;
+  padding: 5px 20px;
   color: #000;
   background: none;
   border: none;
@@ -494,20 +497,25 @@
   cursor: pointer;
 }
 
-.MobileProductCount {
+.MobileProductCount p {
   font-size: 14px;
   text-align: center;
   padding-bottom: 10px;
+  @media screen and (max-width: 1000px) {
+    font-size: 12px;
+    line-height: 1.7;
+    
+  }
 }
 
 /* Group title */
 .filterGroupTitle {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   padding: 20px 0;
   text-transform: uppercase;
   color: #333;
-  font-family: var(--SourceSerifPro);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -530,10 +538,11 @@
 
 /* Individual option styles */
 .filterOption {
+  font-family: var(--Secondary);
   display: flex;
   align-items: flex-start;
   line-height: 16px;
-  font-size: 16px;
+  font-size: 14px;
   color: #111827;
   cursor: pointer;
   align-items: center;
@@ -562,10 +571,10 @@
   border-radius: 3px;
   border: 2px solid #111827;
   display: inline-grid;
-  height: 22px;
-  min-width: 22px;
+  height: 20px;
+  min-width: 20px;
   top: 1px;
-  width: 22px;
+  width: 20px;
   cursor: pointer;
   position: relative;
 
@@ -682,7 +691,7 @@
 
 .sortList {
   position: relative;
-
+  font-family: var(--Secondary);
   cursor: pointer;
 
 }
@@ -696,6 +705,7 @@
   width: 225px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 10;
+  font-family: var(--Secondary);
 }
 
 .sortDropdown ul {
@@ -787,34 +797,76 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-
+  position: relative;
   text-align: center;
   cursor: pointer;
   color: #000;
   text-decoration: none;
   gap: 5px;
   font-size: 14px;
-  align-items: flex-start;
+  align-items: center;
 }
+.watchItem:hover{
+  border: 1px solid #a29253;
+  border-bottom: none;
+  @media screen and (max-width: 1000px) {
+    border-bottom: 1px solid #a29253;
+    
+  }
+}
+.watchItem:hover{.addToCartButton {
+  color: #a29253;
+  border: 1px solid #a29253;
+  border-right:none ;
+  border-left:none ;
+}}
+.watchItem:hover{.addToCartButton:hover {
+  color: #fff;
+  background-color: #a29253;
 
-
+}}
 .watchItem img:hover {
   transform: scale(1.01);
 }
 
 .watchItem img {
-  max-width: 100%;
+  max-width: 98%;
+  margin: auto;
   height: auto;
   aspect-ratio: 3 / 4;
   object-fit: scale-down;
 }
 
 .watchItem span {
-  font-size: 16px;
+  font-size: 12px;
   padding: 0 5px;
   line-height: 22px;
-  margin-top: 14px;
-  font-weight: 600;
+  
+  font-weight: 500;
+
+}
+.saleTag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #a29253;
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  font-weight: bold;
+  z-index: 2;
+  border-radius: 1px;
+  text-transform: uppercase;
+  @media screen and (max-width: 1000px) {
+    font-size: 10px;
+    padding: 2px 4px
+    
+  }
+}
+.price span{
+  font-size: 14px;
+  line-height: 22px;  
+  font-weight: 500;
 
 }
 
@@ -823,6 +875,12 @@
 
   font-size: 14px;
   line-height: 24px;
+  @media screen and (max-width: 1000px) {
+    font-size: 12px;
+    line-height: 20px;    
+    
+  }
+
 }
 
 .featuredImage {
@@ -840,20 +898,23 @@
 
 .price {
   color: #111827;
+  font-family: var(--Secondary);
 }
 
 .price span {
   text-decoration: none;
   font-weight: 300;
+  font-family: var(--Secondary);
+  
 }
 
 .price span.regular {
   font-size: 14px;
-  color: #6B0100;
+  color: #a29253;
   text-decoration: line-through;
-
+  font-family: var(--Secondary);
   @media screen and (max-width:650px) {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 
@@ -868,24 +929,22 @@
 
 .addToCartButton {
   padding: 7px;
-  color: #fff;
-  border: 1px solid #2954ff;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-size: 14px;
-  z-index: 1;
-  background-color: #2954ff;
-  width: 75%;
-  text-align: center;
-
-  text-decoration: none;
-  border-radius: 25px;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 14px;
+    z-index: 1;
+    background-color: unset;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
 }
 
-.addToCartButton:hover {
-  background-color: rgb(32, 71, 180);
-  color: #fff;
-}
+/* .addToCartButton:hover {
+  color: #a29253;
+  border: 1px solid #a29253;
+} */
 
 /*========================================= Discount Block Section ======================================= */
 
@@ -1037,7 +1096,23 @@
   color: #D4A902;
 }
 
-
+/* Brand Name Section */
+.brandName{
+  font-family: var(--muli);
+  text-align: center;
+  text-transform: uppercase;
+}
+.conditionName{
+  font-family: var(--muli);
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 300 !important;
+  color: #a29253;
+}
+.loadingContainer{
+  text-align: center;
+  padding: 50px 0;
+}
 /* ==================================================================Media Query============================================================= */
 
 @media screen and (min-width: 650px) and (max-width: 1000px) {
@@ -1104,7 +1179,7 @@
 
 
   .contentContainer {
-    padding: 10px;
+    padding: 0px 10px;
   }
 
   .cartegoryHeaderContainer {
@@ -1117,13 +1192,15 @@
   }
 
   .contentContainer h1 {
-    font-size: 25px;
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 
 
   /* ===================Products================ */
   .watchItem span {
-    font-size: 14px;
+    font-size: 10px;
+    line-height: 14px;
   }
 
   /* =======Filter======= */
