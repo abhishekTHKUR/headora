@@ -7,16 +7,16 @@ Welcome Headora is a high-performance, modern eCommerce storefront built with Ne
 
 ### 💥 Headora Theme Overview
 
-The **[Headora Theme](https://wiki.ocodecommerce.com/en/Theme/overview)** is a headless eCommerce solution that brings the power of Magento’s GraphQL API together with a blazing-fast Next.js frontend. 🚀 This setup creates **fast**, **scalable**, and **SEO-friendly** eCommerce stores, while giving you the flexibility to customize the UI/UX to your heart's content. 
+The **[Headora Theme](https://wiki.ocodecommerce.com/en/Theme/Headora/overview)** is a headless eCommerce solution that brings the power of Magento’s GraphQL API together with a blazing-fast Next.js frontend. 🚀 This setup creates **fast**, **scalable**, and **SEO-friendly** eCommerce stores, while giving you the flexibility to customize the UI/UX to your heart's content. 
 
 
-Learn more about **[Headora architecture](https://wiki.ocodecommerce.com/en/Theme/overview)** and **[ Home pages](https://wiki.ocodecommerce.com/en/Theme/home-page)** in the Docs.
+Learn more about **[Headora architecture](https://wiki.ocodecommerce.com/en/Theme/Headora/overview)** and **[ Home pages](https://wiki.ocodecommerce.com/en/Theme/Headora/home-page)** in the Docs.
 
 
 ## 🛠️ Pre-Existing Issues & Updations
-Follow the **[Release Notes](https://wiki.ocodecommerce.com/en/Theme/Issues-Resolutions)** to keep your Medusa project up-to-date.
+Follow the **[Release Notes](https://wiki.ocodecommerce.com/en/Theme/Headora/Issues-Resolutions)** to keep your Medusa project up-to-date.
 
-Check out all available **[Headora integrations](https://wiki.ocodecommerce.com/en/Theme/Upgrade-Integration)**.
+Check out all available **[Headora integrations](https://wiki.ocodecommerce.com/en/Theme/Headora/Upgrade-Integration)**.
 
 
 
@@ -25,7 +25,7 @@ Check out all available **[Headora integrations](https://wiki.ocodecommerce.com/
 ### 🛠️ Prerequisites
 
 Before you begin, make sure you have the following installed:
-**[Headora Installation](https://wiki.ocodecommerce.com/en/Theme/installation)**
+**[Headora Installation](https://wiki.ocodecommerce.com/en/Theme/Headora/installation)**
 
 
 

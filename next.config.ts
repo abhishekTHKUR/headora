@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: [new URL(process.env.NEXT_PUBLIC_MAGENTO_ENDPOINT || '').hostname], // Dynamically extract domain
   },
+  
 };
 
 export default nextConfig;
